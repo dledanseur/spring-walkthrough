@@ -1,13 +1,14 @@
 package com.example.demo.services;
 
-import com.example.demo.repositories.UserRepository;
-import com.example.demo.services.dto.UserDto;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.example.demo.repositories.UserRepository;
+import com.example.demo.repositories.entities.UserEntity;
+import com.example.demo.services.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -26,6 +27,16 @@ public class UserServiceImpl implements UserService{
 
         }).collect(Collectors.toList());
 
+    }
+    
+    public UserDto saveUser(UserDto user) {
+    	UserEntity entity = new UserEntity();
+    	entity.setName(user.getName());
+    	entity.setEmail(user.getEmail());
+    	
+    	userRepository.save(entity);
+    	
+    	return user;
     }
 }
 

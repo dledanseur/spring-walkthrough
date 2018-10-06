@@ -7,6 +7,8 @@ import com.example.demo.services.dto.UserDto;
 public interface UserService {
 
     public List<UserDto> getAllUsers();
+    
+    public UserDto saveUser(UserDto user);
 
 }
 
